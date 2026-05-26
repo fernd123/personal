@@ -44,15 +44,18 @@ import { LangService } from '../../services/lang.service';
 })
 export class HeaderComponent implements OnInit {
   langService = inject(LangService);
-  isDark = signal(false);
+  isDark = signal(true);
 
   ngOnInit(): void {
     const stored = localStorage.getItem('theme');
-    if (stored === 'dark') {
-      this.isDark.set(true);
-    } else {
-      // ensure light mode class is absent on init
+    if (stored === 'light') {
+      this.isDark.set(false);
       document.documentElement.classList.remove('dark');
+    } else {
+      // dark by default
+      this.isDark.set(true);
+      document.documentElement.classList.add('dark');
+      if (!stored) localStorage.setItem('theme', 'dark');
     }
   }
 
