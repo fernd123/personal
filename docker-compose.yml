@@ -1,0 +1,7 @@
+services:
+
+  portfolio:
+    build: .
+    ports:
+      - "95:95"
+    restart: unless-stopped

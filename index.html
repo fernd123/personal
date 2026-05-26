@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fernando Rodríguez - Freelance Full-Stack & IoT Engineer Portfolio</title>
+    <!-- Tailwind CSS para el diseño rápido y moderno -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome para iconos de desarrollo y herramientas -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts para tipografías premium -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            bg: '#080c14', // Slate ultra oscuro premium
+                            card: '#0f172a', // Slate azulado intermedio
+                            accent: '#6366f1', // Indigo vibrante
+                            secondary: '#10b981', // Emerald para indicar disponibilidad
+                            highlight: '#38bdf8', // Celeste eléctrico
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .bg-grid {
+            background-size: 50px 50px;
+            background-image: linear-gradient(to right, rgba(99, 102, 241, 0.02) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(99, 102, 241, 0.02) 1px, transparent 1px);
+        }
+        .perspective-container {
+            perspective: 1200px;
+        }
+        .tilt-card {
+            transform-style: preserve-3d;
+            transition: transform 0.15s ease-out, box-shadow 0.2s ease;
+        }
+        /* Scrollbar premium */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #080c14;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4f46e5;
+        }
+    </style>
+</head>
+<body class="bg-brand-bg text-slate-100 font-sans antialiased min-h-screen bg-grid">
+
+    <!-- Header / Barra de Navegación -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-brand-bg/85 border-b border-slate-900">
+        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <span class="w-3.5 h-3.5 rounded-full bg-brand-secondary animate-pulse" title="Disponible para proyectos"></span>
+                <span class="font-mono text-xs text-slate-300">status: <span class="text-brand-secondary font-bold">FREELANCE</span></span>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <a href="#experiencia-seccion" class="hidden sm:inline-flex text-xs font-mono text-slate-400 hover:text-white transition-colors">
+                    // experiencia.java
+                </a>
+                <a href="#contacto-seccion" class="px-4 py-2 bg-slate-900 hover:bg-slate-800 border border-slate-800 text-xs font-mono font-medium rounded-xl text-brand-secondary flex items-center gap-2 transition-all">
+                    <i class="fa-solid fa-envelope"></i> Contactar
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 py-12 space-y-24">
+        
+        <!-- Tarjeta de Presentación Interactiva 3D -->
+        <section class="flex flex-col items-center justify-center pt-4">
+            <div class="perspective-container w-full max-w-2xl">
+                <div id="hero-card" class="tilt-card bg-gradient-to-br from-brand-card to-slate-950 rounded-2xl border border-slate-800 p-8 sm:p-10 shadow-2xl relative overflow-hidden cursor-pointer">
+                    <!-- Efectos de brillo de fondo -->
+                    <div class="absolute -right-20 -top-20 w-56 h-56 bg-brand-accent/15 rounded-full blur-3xl pointer-events-none"></div>
+                    <div class="absolute -left-20 -bottom-20 w-56 h-56 bg-brand-highlight/15 rounded-full blur-3xl pointer-events-none"></div>
+                    
+                    <div class="flex flex-col sm:flex-row justify-between items-start gap-4 mb-6">
+                        <div>
+                            <span class="font-mono text-xs text-brand-accent tracking-wider font-bold">// INGENIERO DE SOFTWARE FULL-STACK & IOT</span>
+                            <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight mt-1 text-white">
+                                Fernando Rodríguez
+                            </h1>
+                            <p class="text-xs text-brand-highlight mt-1 font-mono font-medium">
+                                const freelance = { focus: ['Backend Robusto', 'Sistemas Industriales', 'Web/Mobile'] };
+                            </p>
+                        </div>
+                        <div class="w-14 h-14 rounded-2xl bg-slate-900 flex items-center justify-center border border-slate-800 shadow-inner">
+                            <i class="fa-solid fa-microchip text-2xl text-brand-accent"></i>
+                        </div>
+                    </div>
+
+                    <!-- Propuesta de Valor Unificada -->
+                    <div class="mb-8 space-y-4">
+                        <p class="text-slate-300 text-sm leading-relaxed font-light">
+                            Ayudo a empresas a diseñar e implementar arquitecturas críticas de software e integraciones industriales estables. Combino el rigor de la ingeniería del software con soluciones prácticas que optimizan procesos reales en producción.
+                        </p>
+                        
+                        <!-- Badges de especialidad técnica -->
+                        <div class="flex flex-wrap gap-2 pt-1">
+                            <span class="px-2.5 py-1 bg-slate-900/80 text-slate-300 text-xs font-mono rounded-lg border border-slate-800 flex items-center gap-1.5">
+                                <i class="fa-brands fa-java text-orange-500"></i> Java 21 / Spring Boot
+                            </span>
+                            <span class="px-2.5 py-1 bg-slate-900/80 text-slate-300 text-xs font-mono rounded-lg border border-slate-800 flex items-center gap-1.5">
+                                <i class="fa-brands fa-angular text-red-500"></i> Angular
+                            </span>
+                            <span class="px-2.5 py-1 bg-slate-900/80 text-slate-300 text-xs font-mono rounded-lg border border-slate-800 flex items-center gap-1.5">
+                                <i class="fa-solid fa-network-wired text-brand-highlight"></i> IoT (Modbus, OPC UA, MQTT)
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Enlaces Rápidos e Interacciones -->
+                    <div class="flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-slate-800/60">
+                        <div class="flex gap-4">
+                            <a href="mailto:frodriguezsidro@gmail.com" class="text-slate-400 hover:text-brand-accent text-xl transition-colors" title="Enviar correo a Fernando"><i class="fa-solid fa-envelope"></i></a>
+                            <a href="tel:+34637216029" class="text-slate-400 hover:text-brand-accent text-xl transition-colors" title="Llamar por teléfono"><i class="fa-solid fa-phone"></i></a>
+                            <span class="text-xs font-mono text-slate-500 flex items-center gap-1"><i class="fa-solid fa-location-dot"></i> Castellón de la Plana, ES</span>
+                        </div>
+                        <button id="btn-copy" onclick="copyContactInfo(event)" class="px-4 py-2 bg-slate-950 hover:bg-slate-900 border border-slate-800 hover:border-slate-700 rounded-xl text-xs font-mono text-slate-300 flex items-center gap-2 transition-all">
+                            <span id="copy-text">Copiar Email</span> <i class="fa-regular fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="text-[11px] text-slate-500 mt-5 font-mono text-center select-none">
+                <i class="fa-solid fa-arrow-pointer mr-1 animate-pulse"></i> Pasa el ratón (o pulsa) para interactuar con la tarjeta
+            </p>
+        </section>
+
+        <!-- Soluciones & Especialidades -->
+        <section id="servicios-seccion" class="space-y-12">
+            <div class="text-center max-w-2xl mx-auto space-y-3">
+                <span class="px-3 py-1 bg-brand-accent/10 text-brand-accent text-xs font-mono rounded-full border border-brand-accent/20">QUÉ APORTO A TU EQUIPO</span>
+                <h2 class="text-3xl font-extrabold tracking-tight">Especialización de Extremo a Extremo</h2>
+                <p class="text-slate-400 text-sm">
+                    No solo escribo líneas de código; traduzco problemas complejos de negocio y de planta industrial en sistemas confiables, estructurados y mantenibles.
+                </p>
+            </div>
+
+            <!-- Grid de Especialidades -->
+            <div class="grid md:grid-cols-3 gap-6">
+                
+                <!-- Tarjeta 1: Backend & Microservicios -->
+                <div class="bg-gradient-to-b from-slate-900/80 to-slate-950/80 p-6 rounded-2xl border border-slate-800 hover:border-slate-700/80 transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="w-11 h-11 bg-indigo-500/10 text-indigo-400 rounded-xl flex items-center justify-center mb-5 border border-indigo-500/20 shadow-inner">
+                            <i class="fa-solid fa-server text-lg"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">Back-End & Arquitectura</h3>
+                        <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                            Construcción de backends robustos y microservicios diseñados desde cero. Especialista en arquitecturas limpias, persistencia de datos relacionales y no relacionales y testing automatizado.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-800/60">
+                        <span class="block text-[10px] font-mono text-slate-500 mb-2">// STACK PRINCIPAL:</span>
+                        <div class="flex flex-wrap gap-1">
+                            <span class="text-[9px] font-mono bg-slate-900 text-slate-300 px-2 py-0.5 rounded border border-slate-800">Java 21</span>
+                            <span class="text-[9px] font-mono bg-slate-900 text-slate-300 px-2 py-0.5 rounded border border-slate-800">Spring Boot</span>
+                            <span class="text-[9px] font-mono bg-slate-900 text-slate-300 px-2 py-0.5 rounded border border-slate-800">PostgreSQL</span>
+                            <span class="text-[9px] font-mono bg-slate-900 text-slate-300 px-2 py-0.5 rounded border border-slate-800">Docker</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 2: Integración IoT e Industria -->
+                <div class="bg-gradient-to-b from-slate-900/80 to-slate-950/80 p-6 rounded-2xl border border-slate-800 hover:border-slate-700/80 transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="w-11 h-11 bg-emerald-500/10 text-emerald-400 rounded-xl flex items-center justify-center mb-5 border border-emerald-500/20 shadow-inner">
+                            <i class="fa-solid fa-gears text-lg"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">Software Industrial & IoT</h3>
+                        <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                            Integración y adquisición de datos en plantas industriales. Conectividad con maquinaria, creación de HMIs, configuración de brókers de mensajería y desarrollo de microprocesos estables para entornos 24/7.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-800/60">
+                        <span class="block text-[10px] font-mono text-slate-500 mb-2">// INDUSTRIAL PROTOCOLS:</span>
+                        <div class="flex flex-wrap gap-1">
+                            <span class="text-[9px] font-mono bg-slate-900 text-slate-300 px-2 py-0.5 rounded border border-slate-800">Modbus/TCP</span>
+                            <span class="text-[9px] font-mono bg-slate-900 text-slate-300 px-2 py-0.5 rounded border border-slate-800">OPC UA</span>
+                            <span class="text-[9px] font-mono bg-slate-900 text-slate-300 px-2 py-0.5 rounded border border-slate-800">MQTT</span>
+                            <span class="text-[9px] font-mono bg-slate-900 text-slate-300 px-2 py-0.5 rounded border border-slate-800">Python</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 3: Frontend Web & Mobile -->
+                <div class="bg-gradient-to-b from-slate-900/80 to-slate-950/80 p-6 rounded-2xl border border-slate-800 hover:border-slate-700/80 transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="w-11 h-11 bg-sky-500/10 text-sky-400 rounded-xl flex items-center justify-center mb-5 border border-sky-500/20 shadow-inner">
+                            <i class="fa-solid fa-laptop-code text-lg"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">Web & Mobile Apps</h3>
+                        <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                            Interfaces limpias, modulares y de alta velocidad. Creación de dashboards interactivos de control y monitorización en tiempo real y aplicaciones híbridas optimizadas para tabletas y smartphones.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-800/60">
+                        <span class="block text-[10px] font-mono text-slate-500 mb-2">// FRONTEND WEB & MOBILE:</span>
+                        <div class="flex flex-wrap gap-1">
+                            <span class="text-[9px] font-mono bg-slate-900 text-slate-300 px-2 py-0.5 rounded border border-slate-800">Angular 16+</span>
+                            <span class="text-[9px] font-mono bg-slate-900 text-slate-300 px-2 py-0.5 rounded border border-slate-800">Ionic 5+</span>
+                            <span class="text-[9px] font-mono bg-slate-900 text-slate-300 px-2 py-0.5 rounded border border-slate-800">TypeScript</span>
+                            <span class="text-[9px] font-mono bg-slate-900 text-slate-300 px-2 py-0.5 rounded border border-slate-800">Tailwind</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Proyectos de Portfolio -->
+        <section id="portfolio-seccion" class="space-y-12">
+            <div class="flex flex-col md:flex-row items-start md:items-end justify-between gap-4 border-b border-slate-800 pb-6">
+                <div>
+                    <span class="text-xs font-mono text-slate-500">// HISTORIAS DE INGENIERÍA EN PRODUCCIÓN</span>
+                    <h2 class="text-3xl font-bold tracking-tight text-white mt-1">Sistemas Desplegados con Éxito</h2>
+                </div>
+                
+                <!-- Filtros Interactivos -->
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="filterProjects('all')" id="filter-all-btn" class="tech-filter-btn px-3 py-1.5 bg-brand-accent text-white text-xs font-mono rounded-lg border border-brand-accent/30 transition-all flex items-center gap-1.5">
+                        Todos
+                    </button>
+                    <button onclick="filterProjects('backend')" class="tech-filter-btn px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs font-mono rounded-lg border border-slate-800 transition-all flex items-center gap-1.5" data-tech="backend">
+                        Backend/Java
+                    </button>
+                    <button onclick="filterProjects('industrial')" class="tech-filter-btn px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs font-mono rounded-lg border border-slate-800 transition-all flex items-center gap-1.5" data-tech="industrial">
+                        IoT/Planta
+                    </button>
+                    <button onclick="filterProjects('web')" class="tech-filter-btn px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs font-mono rounded-lg border border-slate-800 transition-all flex items-center gap-1.5" data-tech="web">
+                        Angular/Web
+                    </button>
+                </div>
+            </div>
+
+            <!-- Proyectos reales basados en su experiencia real -->
+            <div class="grid md:grid-cols-3 gap-6" id="projects-grid">
+                
+                <!-- Proyecto 1: Buypower microservicios -->
+                <div class="project-card bg-slate-900/50 rounded-2xl border border-slate-800 overflow-hidden group hover:border-brand-accent/40 hover:bg-slate-900/70 transition-all duration-300 flex flex-col justify-between" data-tech-tags="backend web">
+                    <div>
+                        <div class="aspect-video bg-slate-950 relative overflow-hidden flex items-center justify-center border-b border-slate-900">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80 z-10"></div>
+                            <i class="fa-solid fa-diagram-project text-5xl text-slate-800 group-hover:scale-110 transition-transform duration-300"></i>
+                            <span class="absolute top-3 right-3 z-20 bg-brand-accent/10 text-brand-accent text-[10px] px-2.5 py-1 rounded-full font-mono border border-brand-accent/20 font-bold uppercase">MICROSERVICIOS</span>
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <h3 class="text-lg font-bold text-white group-hover:text-brand-highlight transition-colors">Plataforma SaaS de Microservicios</h3>
+                            
+                            <div class="space-y-3">
+                                <div>
+                                    <span class="text-[10px] font-mono text-brand-accent uppercase tracking-wider font-semibold block">// El Reto Técnico (Arquitectura):</span>
+                                    <p class="text-[11px] text-slate-400">
+                                        Diseñar desde cero un sistema basado en microservicios comunicados con APIs REST, asegurando la calidad del código mediante cobertura estricta de tests unitarios (JUnit) y pruebas de integración e interfaz de usuario de extremo a extremo (Selenium).
+                                    </p>
+                                </div>
+                                <div>
+                                    <span class="text-[10px] font-mono text-brand-secondary uppercase tracking-wider font-semibold block">// El Impacto de Negocio:</span>
+                                    <p class="text-[11px] text-slate-300">
+                                        Creación del producto mínimo viable completo y despliegue del frontend robusto con Angular, logrando estabilidad total en el paso a producción y facilitando la toma rápida de requerimientos funcionales directamente con el cliente.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-3 flex flex-wrap gap-1">
+                        <span class="text-[9px] font-mono bg-slate-950 border border-slate-800 text-slate-400 px-2 py-0.5 rounded">Spring Boot</span>
+                        <span class="text-[9px] font-mono bg-slate-950 border border-slate-800 text-slate-400 px-2 py-0.5 rounded">Angular 8</span>
+                        <span class="text-[9px] font-mono bg-slate-950 border border-slate-800 text-slate-400 px-2 py-0.5 rounded">Selenium</span>
+                        <span class="text-[9px] font-mono bg-slate-950 border border-slate-800 text-slate-400 px-2 py-0.5 rounded">JUnit</span>
+                    </div>
+                </div>
+
+                <!-- Proyecto 2: Mas Ingenieros industrial -->
+                <div class="project-card bg-slate-900/50 rounded-2xl border border-slate-800 overflow-hidden group hover:border-brand-accent/40 hover:bg-slate-900/70 transition-all duration-300 flex flex-col justify-between" data-tech-tags="industrial backend web">
+                    <div>
+                        <div class="aspect-video bg-slate-950 relative overflow-hidden flex items-center justify-center border-b border-slate-900">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80 z-10"></div>
+                            <i class="fa-solid fa-industry text-5xl text-slate-800 group-hover:scale-110 transition-transform duration-300"></i>
+                            <span class="absolute top-3 right-3 z-20 bg-emerald-500/10 text-emerald-400 text-[10px] px-2.5 py-1 rounded-full font-mono border border-emerald-500/20 font-bold uppercase">IoT & PLANTA</span>
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <h3 class="text-lg font-bold text-white group-hover:text-brand-highlight transition-colors">Sistema de Adquisición de Datos de Planta</h3>
+                            
+                            <div class="space-y-3">
+                                <div>
+                                    <span class="text-[10px] font-mono text-brand-accent uppercase tracking-wider font-semibold block">// El Reto Técnico (Arquitectura):</span>
+                                    <p class="text-[11px] text-slate-400">
+                                        Integración en tiempo real de protocolos industriales tradicionales y modernos (Modbus/TCP, OPC UA y MQTT). Desarrollo de microprocesos multihilo y APIs con Java 21 y Python encapsulados en contenedores Docker.
+                                    </p>
+                                </div>
+                                <div>
+                                    <span class="text-[10px] font-mono text-brand-secondary uppercase tracking-wider font-semibold block">// El Impacto de Negocio:</span>
+                                    <p class="text-[11px] text-slate-300">
+                                        Creación de una infraestructura centralizada de software para el departamento, logrando la sensorización y visualización interactiva de KPIs en entornos industriales, reduciendo tiempos muertos de respuesta de soporte.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-3 flex flex-wrap gap-1">
+                        <span class="text-[9px] font-mono bg-slate-950 border border-slate-800 text-slate-400 px-2 py-0.5 rounded">Java 21</span>
+                        <span class="text-[9px] font-mono bg-slate-950 border border-slate-800 text-slate-400 px-2 py-0.5 rounded">OPC UA</span>
+                        <span class="text-[9px] font-mono bg-slate-950 border border-slate-800 text-slate-400 px-2 py-0.5 rounded">Docker</span>
+                        <span class="text-[9px] font-mono bg-slate-950 border border-slate-800 text-slate-400 px-2 py-0.5 rounded">Modbus</span>
+                    </div>
+                </div>
+
+                <!-- Proyecto 3: Opentix Openbravo -->
+                <div class="project-card bg-slate-900/50 rounded-2xl border border-slate-800 overflow-hidden group hover:border-brand-accent/40 hover:bg-slate-900/70 transition-all duration-300 flex flex-col justify-between" data-tech-tags="backend">
+                    <div>
+                        <div class="aspect-video bg-slate-950 relative overflow-hidden flex items-center justify-center border-b border-slate-900">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80 z-10"></div>
+                            <i class="fa-solid fa-network-wired text-5xl text-slate-800 group-hover:scale-110 transition-transform duration-300"></i>
+                            <span class="absolute top-3 right-3 z-20 bg-sky-500/10 text-sky-400 text-[10px] px-2.5 py-1 rounded-full font-mono border border-sky-500/20 font-bold uppercase">INTEGRACIONES ERP</span>
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <h3 class="text-lg font-bold text-white group-hover:text-brand-highlight transition-colors">Automatización e Integraciones ERP</h3>
+                            
+                            <div class="space-y-3">
+                                <div>
+                                    <span class="text-[10px] font-mono text-brand-accent uppercase tracking-wider font-semibold block">// El Reto Técnico (Arquitectura):</span>
+                                    <p class="text-[11px] text-slate-400">
+                                        Desarrollo e implantación de módulos personalizados en sistemas Openbravo ERP. Integración mediante Web Services estructurados con plataformas externas, CRMs y aplicaciones móviles corporativas.
+                                    </p>
+                                </div>
+                                <div>
+                                    <span class="text-[10px] font-mono text-brand-secondary uppercase tracking-wider font-semibold block">// El Impacto de Negocio:</span>
+                                    <p class="text-[11px] text-slate-300">
+                                        Automatización completa de tareas administrativas recurrentes en múltiples proyectos multinacionales de diversos sectores, aumentando la productividad y estandarizando metodologías de documentación técnica.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-3 flex flex-wrap gap-1">
+                        <span class="text-[9px] font-mono bg-slate-950 border border-slate-800 text-slate-400 px-2 py-0.5 rounded">Openbravo</span>
+                        <span class="text-[9px] font-mono bg-slate-950 border border-slate-800 text-slate-400 px-2 py-0.5 rounded">Java</span>
+                        <span class="text-[9px] font-mono bg-slate-950 border border-slate-800 text-slate-400 px-2 py-0.5 rounded">API Rest</span>
+                        <span class="text-[9px] font-mono bg-slate-950 border border-slate-800 text-slate-400 px-2 py-0.5 rounded">PostgreSQL</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Experiencia Histórica -->
+        <section id="experiencia-seccion" class="space-y-12">
+            <div class="border-b border-slate-800 pb-4">
+                <span class="text-xs font-mono text-slate-500">// CONTROL DE VERSIONES - HISTORIAL DE CAMBIOS</span>
+                <h2 class="text-3xl font-bold tracking-tight text-white mt-1">Evolución Profesional</h2>
+                <p class="text-slate-400 text-sm">Mi carrera documentada paso a paso a través de hitos profesionales significativos.</p>
+            </div>
+
+            <!-- Git Commit Timeline -->
+            <div class="relative pl-6 border-l border-slate-800 space-y-12 ml-4">
+                
+                <!-- Commit 1: Mas Ingenieros -->
+                <div class="relative group">
+                    <span class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-brand-secondary border-4 border-brand-bg transition-transform group-hover:scale-125"></span>
+                    <div class="space-y-2">
+                        <div class="flex flex-wrap items-baseline gap-2">
+                            <span class="font-mono text-xs text-brand-secondary">commit f32_mas_ing (Sept 2020 - Actualidad)</span>
+                            <span class="px-2 py-0.5 bg-slate-900 text-[10px] font-mono text-slate-400 rounded border border-slate-800">Director de Proyectos de Software</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">Mas Ingenieros <span class="text-xs text-slate-500 font-normal">| Villarreal, Castellón</span></h3>
+                        <p class="text-xs text-slate-400 max-w-3xl leading-relaxed">
+                            Gestión integral de proyectos de software para digitalización industrial, cubriendo desde la preventa técnica hasta la coordinación de equipos multidisciplinares, codificación crítica y despliegue final.
+                        </p>
+                        <ul class="text-[11px] text-slate-300 list-disc list-inside space-y-1 pl-2">
+                            <li>Diseño y consolidación de la infraestructura técnica del departamento de desarrollo de software.</li>
+                            <li>Modelado de microservicios y sistemas monolíticos de alta disponibilidad basados en <strong>Java 21, Spring Boot y Docker</strong>.</li>
+                            <li>Integración en planta de sensores, PLCs y robots mediante protocolos de automatización como <strong>OPC UA, MQTT y Modbus/TCP</strong>.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Commit 2: Innova Consulting -->
+                <div class="relative group">
+                    <span class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-slate-700 border-4 border-brand-bg transition-transform group-hover:scale-125"></span>
+                    <div class="space-y-1">
+                        <div class="flex flex-wrap items-baseline gap-2">
+                            <span class="font-mono text-xs text-slate-500">commit b88_innova (Feb 2020 - Sept 2020)</span>
+                            <span class="px-2 py-0.5 bg-slate-900 text-[10px] font-mono text-slate-400 rounded border border-slate-800">Desarrollador y Analista</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-300">Innova Consulting <span class="text-xs text-slate-500 font-normal">| Castellón de la Plana</span></h3>
+                        <p class="text-xs text-slate-400 max-w-3xl">
+                            Análisis técnico y desarrollo de soluciones corporativas a medida sobre plataformas Microsoft Dynamics Navision y Dynamics 365 Business Central.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Commit 3: Buypower -->
+                <div class="relative group">
+                    <span class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-slate-700 border-4 border-brand-bg transition-transform group-hover:scale-125"></span>
+                    <div class="space-y-2">
+                        <div class="flex flex-wrap items-baseline gap-2">
+                            <span class="font-mono text-xs text-slate-500">commit a40_buypow (Julio 2018 - Feb 2020)</span>
+                            <span class="px-2 py-0.5 bg-slate-900 text-[10px] font-mono text-slate-400 rounded border border-slate-800">Desarrollador y Analista Full-Stack</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-300">Buypower <span class="text-xs text-slate-500 font-normal">| Barcelona</span></h3>
+                        <p class="text-xs text-slate-400 max-w-3xl leading-relaxed">
+                            Desarrollo desde cero de un producto de software propietario modular basado en una arquitectura robusta de microservicios.
+                        </p>
+                        <ul class="text-[11px] text-slate-300 list-disc list-inside space-y-1 pl-2">
+                            <li>Implementación de backend distribuido en microservicios con <strong>Java y Spring Boot</strong>.</li>
+                            <li>Creación del panel web de usuario (Frontend) moderno utilizando <strong>Angular 8</strong>.</li>
+                            <li>Diseño y automatización de pruebas unitarias y de integración robustas con JUnit y Selenium para cero fallos en producción.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Commit 4: Indra -->
+                <div class="relative group">
+                    <span class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-slate-700 border-4 border-brand-bg transition-transform group-hover:scale-125"></span>
+                    <div class="space-y-1">
+                        <div class="flex flex-wrap items-baseline gap-2">
+                            <span class="font-mono text-xs text-slate-500">commit c10_indra (Marzo 2018 - Julio 2018)</span>
+                            <span class="px-2 py-0.5 bg-slate-900 text-[10px] font-mono text-slate-400 rounded border border-slate-800">Desarrollador y Analista</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-300">Indra <span class="text-xs text-slate-500 font-normal">| Valencia</span></h3>
+                        <p class="text-xs text-slate-400 max-w-3xl">
+                            Integración en un equipo multidisciplinar y deslocalizado para un proyecto estratégico del <strong>Ministerio de Defensa de España</strong>, operando como programador de interfaces con Angular 5.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Commit 5: Opentix -->
+                <div class="relative group">
+                    <span class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-slate-700 border-4 border-brand-bg transition-transform group-hover:scale-125"></span>
+                    <div class="space-y-2">
+                        <div class="flex flex-wrap items-baseline gap-2">
+                            <span class="font-mono text-xs text-slate-500">commit e08_opentix (Abril 2015 - Marzo 2018)</span>
+                            <span class="px-2 py-0.5 bg-slate-900 text-[10px] font-mono text-slate-400 rounded border border-slate-800">Desarrollador y Analista ERP</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-300">Opentix S.L <span class="text-xs text-slate-500 font-normal">| Castellón de la Plana</span></h3>
+                        <p class="text-xs text-slate-400 max-w-3xl leading-relaxed">
+                            Consultor técnico e implantador de software corporativo modular ERP en proyectos nacionales e internacionales.
+                        </p>
+                        <ul class="text-[11px] text-slate-300 list-disc list-inside space-y-1 pl-2">
+                            <li>Personalización técnica del núcleo de <strong>Openbravo ERP</strong> utilizando tecnologías Java.</li>
+                            <li>Construcción de conectores y pasarelas de comunicación con CRMs y aplicaciones externas de movilidad.</li>
+                            <li>Diseño de metodologías internas de documentación del código y estandarización del flujo de entrega.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Calculador e Interacción de Presupuestos -->
+        <section id="contacto-seccion" class="bg-gradient-to-br from-slate-950 to-brand-card rounded-2xl border border-slate-800 p-8 shadow-xl">
+            <div class="max-w-3xl mx-auto space-y-8">
+                <div class="text-center space-y-2">
+                    <span class="px-3 py-1 bg-brand-accent/10 text-brand-accent text-xs font-mono rounded-full border border-brand-accent/20">HERRAMIENTA INTEGRADA</span>
+                    <h2 class="text-3xl font-bold tracking-tight text-white mt-1">Configura un Proyecto / Servicio</h2>
+                    <p class="text-slate-400 text-sm">Selecciona las soluciones que tu empresa o departamento requiere para calcular un esfuerzo técnico orientativo.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <!-- Checkboxes del Calculador -->
+                    <div class="space-y-3" id="pricing-selector">
+                        <label class="flex items-center gap-3 p-3.5 bg-brand-bg/60 rounded-xl border border-slate-800 hover:border-slate-700 cursor-pointer transition-all">
+                            <input type="checkbox" value="700" data-time="5" class="pricing-checkbox w-4.5 h-4.5 rounded text-brand-accent focus:ring-brand-accent" checked>
+                            <div class="text-xs">
+                                <span class="block font-medium text-white">Arquitectura API / Microservicios (Spring Boot)</span>
+                                <span class="text-[11px] text-slate-400">Modelado backend, seguridad JWT y persistencia SQL.</span>
+                            </div>
+                        </label>
+                        <label class="flex items-center gap-3 p-3.5 bg-brand-bg/60 rounded-xl border border-slate-800 hover:border-slate-700 cursor-pointer transition-all">
+                            <input type="checkbox" value="600" data-time="5" class="pricing-checkbox w-4.5 h-4.5 rounded text-brand-accent focus:ring-brand-accent">
+                            <div class="text-xs">
+                                <span class="block font-medium text-white">Frontend Dashboard o SPA (Angular)</span>
+                                <span class="text-[11px] text-slate-400">Interfaz interactiva, modular y conectada con API REST.</span>
+                            </div>
+                        </label>
+                        <label class="flex items-center gap-3 p-3.5 bg-brand-bg/60 rounded-xl border border-slate-800 hover:border-slate-700 cursor-pointer transition-all">
+                            <input type="checkbox" value="800" data-time="7" class="pricing-checkbox w-4.5 h-4.5 rounded text-brand-accent focus:ring-brand-accent">
+                            <div class="text-xs">
+                                <span class="block font-medium text-white">Integración Planta / Protocolos IoT</span>
+                                <span class="text-[11px] text-slate-400">Adquisición Modbus, OPC UA o MQTT en contenedores Docker.</span>
+                            </div>
+                        </label>
+                        <label class="flex items-center gap-3 p-3.5 bg-brand-bg/60 rounded-xl border border-slate-800 hover:border-slate-700 cursor-pointer transition-all">
+                            <input type="checkbox" value="500" data-time="4" class="pricing-checkbox w-4.5 h-4.5 rounded text-brand-accent focus:ring-brand-accent">
+                            <div class="text-xs">
+                                <span class="block font-medium text-white">Aplicación Móvil Multiplataforma (Ionic)</span>
+                                <span class="text-[11px] text-slate-400">Desarrollo híbrido optimizado para terminales móviles de planta o almacén.</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- Cuadro de Cálculo y Acciones de Contacto -->
+                    <div class="bg-brand-bg/90 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between h-full space-y-6">
+                        <div>
+                            <span class="font-mono text-xs text-brand-secondary uppercase tracking-wider font-bold">// ESTIMACIÓN ESTIMADA DE ESFUERZO</span>
+                            <div class="mt-4 flex items-baseline gap-2">
+                                <span class="text-4xl font-extrabold tracking-tight text-white" id="pricing-total">700€</span>
+                                <span class="text-sm text-slate-400" id="pricing-time">~5 días laborables</span>
+                            </div>
+                            <p class="text-[11px] text-slate-500 mt-2.5 leading-normal">
+                                * Nota: Sirve como referencia base inicial. Para proyectos complejos o arquitecturas empresariales se realiza un análisis de requisitos formal.
+                            </p>
+                        </div>
+                        
+                        <div class="space-y-2">
+                            <a id="email-proposal-btn" href="mailto:frodriguezsidro@gmail.com?subject=Propuesta%20de%20Proyecto%20Freelance" class="w-full py-3 bg-brand-accent hover:bg-brand-accent/90 text-white rounded-xl text-xs font-mono font-bold flex items-center justify-center gap-2 transition-colors">
+                                <i class="fa-solid fa-paper-plane"></i> ENVIAR_ESTUDIO_PROYECTO
+                            </a>
+                            
+                            <!-- Botón de descarga de CV que imprime tu web de forma impecable o abre contacto directo -->
+                            <button onclick="window.print()" class="w-full py-2.5 bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 rounded-xl text-xs font-mono font-bold flex items-center justify-center gap-2 transition-colors">
+                                <i class="fa-solid fa-file-pdf"></i> DESCARGAR_PORTFOLIO_CV.pdf
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seccion de Educación y Aptitudes Rápidas -->
+        <section class="grid md:grid-cols-2 gap-8 border-t border-slate-900 pt-12">
+            <!-- Educación -->
+            <div class="space-y-6">
+                <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-graduation-cap text-brand-accent"></i> Educación y Formación
+                </h3>
+                <div class="space-y-4">
+                    <div class="p-4 bg-slate-900/40 rounded-xl border border-slate-800">
+                        <span class="font-mono text-xs text-brand-accent">2012 - 2016</span>
+                        <h4 class="font-bold text-white mt-1">Grado en Ingeniería Informática (Ingeniería del Software)</h4>
+                        <p class="text-xs text-slate-400">Universitat Jaume I - Castellón de la Plana, España</p>
+                    </div>
+                    <div class="p-4 bg-slate-900/40 rounded-xl border border-slate-800">
+                        <span class="font-mono text-xs text-slate-500">2011</span>
+                        <h4 class="font-bold text-slate-300 mt-1">Bachillerato Científico-Tecnológico</h4>
+                        <p class="text-xs text-slate-500">I.E.S Peñagolosa - Castellón de la Plana, España</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Otras Habilidades / Idiomas -->
+            <div class="space-y-6">
+                <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-code text-brand-accent"></i> Aptitudes Técnicas Ampliadas
+                </h3>
+                <div class="flex flex-wrap gap-2">
+                    <!-- Java -->
+                    <span class="px-2.5 py-1 bg-slate-900 text-slate-300 text-xs font-mono rounded-lg border border-slate-800">Java 21</span>
+                    <span class="px-2.5 py-1 bg-slate-900 text-slate-300 text-xs font-mono rounded-lg border border-slate-800">Spring Boot</span>
+                    <span class="px-2.5 py-1 bg-slate-900 text-slate-300 text-xs font-mono rounded-lg border border-slate-800">Python</span>
+                    <span class="px-2.5 py-1 bg-slate-900 text-slate-300 text-xs font-mono rounded-lg border border-slate-800">Node.js</span>
+                    <span class="px-2.5 py-1 bg-slate-900 text-slate-300 text-xs font-mono rounded-lg border border-slate-800">Angular 16</span>
+                    <span class="px-2.5 py-1 bg-slate-900 text-slate-300 text-xs font-mono rounded-lg border border-slate-800">Ionic 5</span>
+                    <span class="px-2.5 py-1 bg-slate-900 text-slate-300 text-xs font-mono rounded-lg border border-slate-800">Docker</span>
+                    <span class="px-2.5 py-1 bg-slate-900 text-slate-300 text-xs font-mono rounded-lg border border-slate-800">PostgreSQL</span>
+                    <span class="px-2.5 py-1 bg-slate-900 text-slate-300 text-xs font-mono rounded-lg border border-slate-800">SQL Server</span>
+                    <span class="px-2.5 py-1 bg-slate-900 text-slate-300 text-xs font-mono rounded-lg border border-slate-800">MongoDB</span>
+                    <span class="px-2.5 py-1 bg-slate-900 text-slate-300 text-xs font-mono rounded-lg border border-slate-800">OPC UA / Modbus</span>
+                    <span class="px-2.5 py-1 bg-slate-900 text-slate-300 text-xs font-mono rounded-lg border border-slate-800">JUnit / Selenium</span>
+                    <span class="px-2.5 py-1 bg-slate-900 text-slate-300 text-xs font-mono rounded-lg border border-slate-800">Git / GitLab</span>
+                </div>
+                <div class="space-y-1 font-mono text-xs text-slate-400">
+                    <p>// IDIOMAS:</p>
+                    <p class="text-slate-200">Español & Valenciano (Nativo) | Inglés (B1 EOI) | Alemán (A2 EOI)</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-950 bg-slate-950 py-10 mt-24">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-500">
+            <div>
+                © 2026 Fernando Rodríguez Sidro. Diseñado con rigor de ingeniería informática.
+            </div>
+            <div class="flex gap-4">
+                <span>Castellón de la Plana, España</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACCIONES Y LÓGICA JAVASCRIPT -->
+    <script>
+        // 1. Efecto de inclinación 3D para la Tarjeta de Presentación
+        const heroCard = document.getElementById('hero-card');
+
+        heroCard.addEventListener('mousemove', (e) => {
+            const cardRect = heroCard.getBoundingClientRect();
+            
+            // Posiciones relativas del cursor dentro de la tarjeta
+            const cardWidth = cardRect.width;
+            const cardHeight = cardRect.height;
+            const cursorX = e.clientX - cardRect.left;
+            const cursorY = e.clientY - cardRect.top;
+            
+            // Grados máximos de rotación en 3D
+            const maxRotation = 10;
+            const rotateY = ((cursorX / cardWidth) - 0.5) * maxRotation * 2;
+            const rotateX = (((cursorY / cardHeight) - 0.5) * -1) * maxRotation * 2;
+
+            heroCard.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg) scale(1.01)`;
+            heroCard.style.boxShadow = `0 30px 60px -15px rgba(99, 102, 241, 0.25)`;
+        });
+
+        heroCard.addEventListener('mouseleave', () => {
+            // Regresar a la posición plana con suavidad
+            heroCard.style.transform = `rotateY(0deg) rotateX(0deg) scale(1)`;
+            heroCard.style.boxShadow = `none`;
+        });
+
+        // 2. Sistema Dinámico de Filtro de Proyectos
+        function filterProjects(tech) {
+            const cards = document.querySelectorAll('.project-card');
+            const buttons = document.querySelectorAll('.tech-filter-btn');
+
+            // Resetear estilos visuales de botones
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-brand-accent', 'text-white');
+                btn.classList.add('bg-slate-900', 'text-slate-300');
+            });
+
+            // Asignar el botón activo actual
+            if (tech === 'all') {
+                document.getElementById('filter-all-btn').classList.add('bg-brand-accent', 'text-white');
+                document.getElementById('filter-all-btn').classList.remove('bg-slate-900');
+            } else {
+                const targetBtn = document.querySelector(`.tech-filter-btn[data-tech="${tech}"]`);
+                if (targetBtn) {
+                    targetBtn.classList.add('bg-brand-accent', 'text-white');
+                    targetBtn.classList.remove('bg-slate-900');
+                }
+            }
+
+            // Filtrar visualmente las tarjetas
+            cards.forEach(card => {
+                const tags = card.getAttribute('data-tech-tags');
+                if (tech === 'all' || tags.includes(tech)) {
+                    card.classList.remove('hidden');
+                    setTimeout(() => {
+                        card.classList.remove('opacity-0', 'scale-95');
+                        card.classList.add('opacity-100', 'scale-100');
+                    }, 20);
+                } else {
+                    card.classList.add('opacity-0', 'scale-95');
+                    setTimeout(() => {
+                        card.classList.add('hidden');
+                    }, 150);
+                }
+            });
+        }
+
+        // 3. Copiar Información de Contacto al Portapapeles
+        function copyContactInfo(event) {
+            event.stopPropagation(); // Previene movimientos raros de la tarjeta 3D durante el click
+            
+            const email = "frodriguezsidro@gmail.com";
+            const btn = document.getElementById('btn-copy');
+            const textSpan = document.getElementById('copy-text');
+            
+            // Portapapeles con fallback seguro
+            const tempTextArea = document.createElement("textarea");
+            tempTextArea.value = email;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+            showCopiedState();
+
+            function showCopiedState() {
+                textSpan.innerText = "¡Copiado!";
+                btn.classList.add('bg-brand-secondary/20', 'border-brand-secondary/40', 'text-brand-secondary');
+                
+                setTimeout(() => {
+                    textSpan.innerText = "Copiar Email";
+                    btn.classList.remove('bg-brand-secondary/20', 'border-brand-secondary/40', 'text-brand-secondary');
+                }, 2000);
+            }
+        }
+
+        // 4. Calculador Dinámico de Presupuesto en Tiempo Real
+        const checkboxes = document.querySelectorAll('.pricing-checkbox');
+        const priceLabel = document.getElementById('pricing-total');
+        const timeLabel = document.getElementById('pricing-time');
+        const emailBtn = document.getElementById('email-proposal-btn');
+
+        function updateBudget() {
+            let totalCost = 0;
+            let totalDays = 0;
+            let selectedServices = [];
+
+            checkboxes.forEach(box => {
+                if (box.checked) {
+                    totalCost += parseInt(box.value);
+                    totalDays += parseInt(box.getAttribute('data-time'));
+                    // Obtener texto del servicio seleccionado
+                    const serviceTitle = box.nextElementSibling.querySelector('span').innerText;
+                    selectedServices.push(serviceTitle);
+                }
+            });
+
+            // Actualizar interfaz
+            priceLabel.innerText = `${totalCost}€`;
+            timeLabel.innerText = `~${totalDays} días laborables`;
+
+            // Construir mailto body dinámico con la pre-configuración elegida
+            const emailBody = `Hola Fernando,\n\nHe estado viendo tu portfolio interactivo y me gustaría solicitar una valoración/reunión sobre el siguiente stack de servicios que he configurado:\n\n` + 
+                selectedServices.map(s => `- ${s}`).join('\n') + 
+                `\n\nPresupuesto base orientativo: ${totalCost}€\nTiempo estimado: ~${totalDays} días laborables.\n\nQuedo a la espera de tu respuesta para coordinar los detalles del proyecto.`;
+            
+            emailBtn.href = `mailto:frodriguezsidro@gmail.com?subject=Propuesta%20de%20Proyecto%20Freelance&body=${encodeURIComponent(emailBody)}`;
+        }
+
+        checkboxes.forEach(box => {
+            box.addEventListener('change', updateBudget);
+        });
+
+        // Inicializar cálculos al cargar la página
+        window.onload = function() {
+            updateBudget();
+        };
+    </script>
+</body>
+</html>

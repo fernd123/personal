@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-bg: #0f1d35;
+  --color-brand-card: #1a2d4a;
+  --color-brand-accent: #818cf8;
+  --color-brand-secondary: #34d399;
+  --color-brand-highlight: #7dd3fc;
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+/* ===== LIGHT MODE (default) ===== */
+:root {
+  color-scheme: light;
+  --color-white: #0f172a;
+  /* Hierarchy (lightest → darkest): brand-bg > brand-card > slate-950 > slate-900 > slate-800 */
+  --color-slate-950: #e4ecf5;    /* chip/overlay bg — clearly darker than page */
+  --color-slate-900: #d4dfec;    /* card bg — distinctly different from page */
+  --color-slate-800: #b8cad9;    /* borders, dividers — visible */
+  --color-slate-700: #9ab0c4;
+  --color-slate-600: #7a97ae;
+  --color-slate-500: #5f7e96;
+  --color-slate-400: #3d6480;
+  --color-slate-300: #1e4060;
+  --color-slate-200: #142d47;    /* was missing — dark readable text */
+  --color-brand-bg: #ecf3fb;     /* page background */
+  --color-brand-card: #f5f9fd;   /* hero card / elevations */
+  --color-brand-highlight: #1d4ed8;  /* dark blue — readable on light backgrounds */
+  --grid-line-color: rgba(60, 90, 140, 0.06);  /* visible but soft grid in light mode */
+}
+
+/* ===== DARK MODE ===== */
+.dark {
+  color-scheme: dark;
+  --color-white: #ffffff;
+  --color-slate-950: #020617;
+  --color-slate-900: #0f172a;
+  --color-slate-800: #1e293b;
+  --color-slate-700: #334155;
+  --color-slate-600: #475569;
+  --color-slate-500: #64748b;
+  --color-slate-400: #94a3b8;
+  --color-slate-300: #cbd5e1;
+  --color-brand-bg: #0f1d35;
+  --color-brand-card: #1a2d4a;
+  --grid-line-color: rgba(129, 140, 248, 0.05);  /* subtle grid in dark mode */
+}
+
+body {
+  background-color: var(--color-brand-bg);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Scrollbar premium */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--color-brand-bg); }
+::-webkit-scrollbar-thumb { background: var(--color-slate-800); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-brand-accent); }
+
+.bg-grid {
+  background-size: 50px 50px;
+  background-image:
+    linear-gradient(to right, var(--grid-line-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line-color) 1px, transparent 1px);
+}
+
+.perspective-container { perspective: 1500px; }
+
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease;
+}
