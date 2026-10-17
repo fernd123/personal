@@ -1,131 +1,134 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { LangService } from '../../services/lang.service';
+import { RevealDirective } from '../../shared/reveal.directive';
 
 const ABOUT_TEXT = {
   es: {
-    badge: '// ALGO MÁS SOBRE MÍ',
-    title: 'Más Allá del Código',
-    p1: 'Más allá de la pantalla, soy una persona con curiosidad genuina por el mundo. Durante una temporada viví y recorrí Asia —',
-    p1highlight: 'China, Vietnam, Tailandia o Malasia',
-    p1end: '— aprendiendo de culturas, metodologías y mentalidades de trabajo radicalmente distintas a las occidentales. Esa experiencia cambió mi forma de escuchar, de priorizar y de colaborar en equipo.',
-    p2: 'En mi tiempo libre practico fútbol, tenis y ciclismo. La naturaleza me desconecta de verdad, y el buen café me acompaña en cada sprint de trabajo.',
-    tags: [
-      { icon: 'fa-plane-departure',  color: 'text-brand-accent', label: 'Viajar y culturas' },
-      { icon: 'fa-futbol',           color: 'text-emerald-400',  label: 'Fútbol' },
-      { icon: 'fa-baseball-bat-ball',color: 'text-sky-400',      label: 'Tenis' },
-      { icon: 'fa-person-biking',    color: 'text-amber-400',    label: 'Ciclismo' },
-      { icon: 'fa-tree',             color: 'text-green-400',    label: 'Naturaleza' },
-      { icon: 'fa-mug-hot',          color: 'text-orange-400',   label: 'Buen café' },
+    title: 'Sobre mí',
+    approachTitle: 'Cómo trabajo',
+    approach: [
+      'En la mayoría de mis proyectos he estado desde la toma de requisitos hasta el mantenimiento en producción. Eso me obliga a pensar en el sistema completo: quién lo va a usar, con qué otros sistemas tiene que hablar y cómo se va a desplegar.',
+      'Antes de escribir código quiero entender el contexto de negocio y tener un diseño funcional acordado. Después trabajo por hitos, de forma incremental y con demos periódicas, para que los ajustes aparezcan pronto. Al terminar entrego el sistema desplegado, documentado y con formación para quien lo vaya a usar.',
     ],
+    steps: ['Contexto', 'Diseño', 'Hitos', 'Desarrollo incremental', 'Entrega y formación'],
+    personalTitle: 'Fuera del trabajo',
+    personal1: 'Durante una temporada viví y viajé por Asia: China, Vietnam, Tailandia o Malasia. Conocer culturas y formas de trabajar muy distintas a las occidentales cambió cómo escucho, cómo priorizo y cómo colaboro en equipo.',
+    personal2: 'En mi tiempo libre juego al fútbol y al tenis y salgo en bici. La naturaleza me desconecta, y el buen café me acompaña cuando trabajo.',
+    photos: [
+      { src: 'assets/foto-vietnam.webp', alt: 'Fernando en Vietnam, junto a un río entre montañas kársticas', caption: 'Vietnam', w: 600, h: 877, pos: 'object-center' },
+      { src: 'assets/foto-aeropuerto.webp', alt: 'Fernando trabajando con el portátil en un aeropuerto', caption: 'Trabajando en el aeropuerto', w: 765, h: 434, pos: 'object-[75%_center]' },
+      { src: 'assets/foto-cafe.webp', alt: 'Un café helado en vaso junto a unas vías de tren', caption: 'Café', w: 482, h: 708, pos: 'object-center' },
+    ],
+    enlarge: 'Ampliar foto',
+    close: 'Cerrar',
   },
   en: {
-    badge: '// A BIT MORE ABOUT ME',
-    title: 'Beyond the Code',
-    p1: 'Beyond the screen, I am a person with genuine curiosity about the world. For a while I lived and travelled across Asia —',
-    p1highlight: 'China, Vietnam, Thailand and Malaysia',
-    p1end: '— learning from cultures, methodologies and ways of working radically different from Western ones. That experience changed how I listen, prioritise and collaborate in a team.',
-    p2: 'In my free time I play football, tennis and cycling. Nature truly disconnects me, and good coffee accompanies every work sprint.',
-    tags: [
-      { icon: 'fa-plane-departure',  color: 'text-brand-accent', label: 'Travel & cultures' },
-      { icon: 'fa-futbol',           color: 'text-emerald-400',  label: 'Football' },
-      { icon: 'fa-baseball-bat-ball',color: 'text-sky-400',      label: 'Tennis' },
-      { icon: 'fa-person-biking',    color: 'text-amber-400',    label: 'Cycling' },
-      { icon: 'fa-tree',             color: 'text-green-400',    label: 'Nature' },
-      { icon: 'fa-mug-hot',          color: 'text-orange-400',   label: 'Good coffee' },
+    title: 'About',
+    approachTitle: 'How I work',
+    approach: [
+      'On most of my projects I have been involved from requirements gathering through to production maintenance. That makes me think about the whole system: who will use it, which other systems it has to talk to, and how it will be deployed.',
+      'Before writing code I want to understand the business context and have an agreed functional design. Then I work in milestones, incrementally and with regular demos, so that adjustments surface early. At the end I hand over the system deployed, documented, and with training for the people who will use it.',
     ],
+    steps: ['Context', 'Design', 'Milestones', 'Incremental build', 'Handover & training'],
+    personalTitle: 'Outside work',
+    personal1: 'For a while I lived and travelled across Asia: China, Vietnam, Thailand or Malaysia. Getting to know cultures and ways of working very different from Western ones changed how I listen, prioritise and collaborate in a team.',
+    personal2: 'In my free time I play football and tennis and go cycling. Nature is how I switch off, and good coffee keeps me company while I work.',
+    photos: [
+      { src: 'assets/foto-vietnam.webp', alt: 'Fernando in Vietnam, by a river between karst mountains', caption: 'Vietnam', w: 600, h: 877, pos: 'object-center' },
+      { src: 'assets/foto-aeropuerto.webp', alt: 'Fernando working on a laptop at an airport', caption: 'Working at the airport', w: 765, h: 434, pos: 'object-[75%_center]' },
+      { src: 'assets/foto-cafe.webp', alt: 'An iced coffee in a glass next to railway tracks', caption: 'Coffee', w: 482, h: 708, pos: 'object-center' },
+    ],
+    enlarge: 'Enlarge photo',
+    close: 'Close',
   },
 } as const;
 
 @Component({
   selector: 'app-about',
   standalone: true,
+  imports: [RevealDirective],
+  host: { '(document:keydown.escape)': 'closePhoto()' },
   template: `
-    <section class="border-t border-slate-800/60 pt-6 space-y-8">
+    <section id="sobre-mi" class="border-t border-rule py-20 md:py-28" aria-labelledby="about-title">
+      <div class="wrap grid gap-y-10 md:grid-cols-12 md:gap-x-8">
+        <header class="md:col-span-3 md:sticky md:top-24 md:self-start">
+          <p class="meta text-accent">05</p>
+          <h2 id="about-title" class="mt-2 font-display text-4xl font-semibold text-ink">{{ t().title }}</h2>
+        </header>
 
-      <div>
-        <span class="text-xs font-mono text-slate-500">{{ t().badge }}</span>
-        <h2 class="text-3xl font-bold tracking-tight text-white mt-1">{{ t().title }}</h2>
-      </div>
+        <div class="md:col-span-9 space-y-16">
+          <div appReveal class="grid gap-8 lg:grid-cols-9">
+            <div class="lg:col-span-6">
+              <h3 class="meta uppercase tracking-[0.12em]">{{ t().approachTitle }}</h3>
+              @for (p of t().approach; track $index) {
+                <p class="mt-4 text-lg leading-relaxed text-ink max-w-[58ch]">{{ p }}</p>
+              }
+            </div>
+            <ol class="lg:col-span-3 lg:mt-8 border-t border-ink self-start">
+              @for (s of t().steps; track s; let i = $index) {
+                <li class="flex gap-4 py-2.5 border-b border-rule text-[0.95rem]">
+                  <span class="meta pt-0.5">0{{ i + 1 }}</span>{{ s }}
+                </li>
+              }
+            </ol>
+          </div>
 
-      <div class="grid lg:grid-cols-2 gap-10 items-center">
+          <div appReveal class="grid gap-8 lg:grid-cols-9">
+            <div class="lg:col-span-4">
+              <h3 class="meta uppercase tracking-[0.12em]">{{ t().personalTitle }}</h3>
+              <p class="mt-4 leading-relaxed max-w-[52ch]">{{ t().personal1 }}</p>
+              <p class="mt-4 leading-relaxed max-w-[52ch]">{{ t().personal2 }}</p>
+            </div>
 
-        <!-- Texto personal -->
-        <div class="space-y-6">
-          <p class="text-slate-300 text-sm leading-relaxed">
-            {{ t().p1 }}
-            <span class="text-white font-medium">{{ t().p1highlight }}</span>
-            {{ t().p1end }}
-          </p>
-          <p class="text-slate-400 text-sm leading-relaxed">{{ t().p2 }}</p>
-
-          <!-- Tags personales -->
-          <div class="flex flex-wrap gap-2 pt-2">
-            @for (tag of t().tags; track tag.label) {
-              <span class="px-3 py-1.5 bg-slate-900 border border-slate-700 text-slate-300 text-xs font-mono rounded-xl flex items-center gap-2">
-                <i class="fa-solid {{ tag.icon }} {{ tag.color }}"></i> {{ tag.label }}
-              </span>
-            }
+            <!-- Uneven three-photo arrangement -->
+            <div class="lg:col-span-5 grid grid-cols-5 gap-3 items-start">
+              @for (photo of t().photos; track photo.src; let i = $index) {
+                <figure [class]="i === 0 ? 'col-span-3 row-span-2' : i === 1 ? 'col-span-2' : 'col-span-2'">
+                  <button
+                    type="button"
+                    class="block w-full overflow-hidden bg-paper-2 cursor-zoom-in"
+                    (click)="activePhoto.set(photo)"
+                    [attr.aria-label]="t().enlarge + ': ' + photo.caption"
+                  >
+                    <img
+                      [src]="photo.src"
+                      [alt]="photo.alt"
+                      [width]="photo.w"
+                      [height]="photo.h"
+                      loading="lazy"
+                      decoding="async"
+                      class="w-full object-cover hover:scale-[1.02] transition-transform duration-500"
+                      [class]="(i === 0 ? 'aspect-[3/4] ' : 'aspect-square ') + photo.pos"
+                    />
+                  </button>
+                </figure>
+              }
+            </div>
           </div>
         </div>
-
-        <!-- Grid de fotos -->
-        <div class="grid grid-cols-2 grid-rows-2 gap-3 h-72 lg:h-80">
-
-          <div class="row-span-2 rounded-2xl overflow-hidden border border-slate-800 bg-slate-900 group cursor-zoom-in"
-               (click)="openPhoto('assets/foto-vietnam.png')">
-            <img
-              src="assets/foto-vietnam.png"
-              alt="Vietnam"
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-          </div>
-
-          <div class="rounded-2xl overflow-hidden border border-slate-800 bg-slate-900 group cursor-zoom-in"
-               (click)="openPhoto('assets/foto-aeropuerto.png')">
-            <img
-              src="assets/foto-aeropuerto.png"
-              alt="Trabajando en el aeropuerto"
-              class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
-          </div>
-
-          <div class="rounded-2xl overflow-hidden border border-slate-800 bg-slate-900 group cursor-zoom-in"
-               (click)="openPhoto('assets/foto-cafe.png')">
-            <img
-              src="assets/foto-cafe.png"
-              alt="Café"
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-          </div>
-
-        </div>
       </div>
-
     </section>
 
-    <!-- Lightbox -->
-    @if (activePhoto()) {
+    @if (activePhoto(); as photo) {
       <div
-        class="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4"
-        (click)="closePhoto()">
-        <button
-          class="absolute top-4 right-4 text-white/70 hover:text-white transition-colors"
-          (click)="closePhoto()">
-          <i class="fa-solid fa-xmark text-2xl"></i>
+        class="fixed inset-0 z-[70] flex items-center justify-center bg-black/85 p-4"
+        role="dialog"
+        aria-modal="true"
+        [attr.aria-label]="photo.caption"
+        (click)="closePhoto()"
+      >
+        <button type="button" class="absolute top-4 right-4 font-mono text-sm text-white/80 hover:text-white" (click)="closePhoto()" autofocus>
+          {{ t().close }} ✕
         </button>
-        <img
-          [src]="activePhoto()"
-          class="max-h-[90vh] max-w-[90vw] rounded-xl shadow-2xl object-contain"
-          (click)="$event.stopPropagation()">
+        <img [src]="photo.src" [alt]="photo.alt" class="max-h-[90vh] max-w-[90vw] object-contain" (click)="$event.stopPropagation()" />
       </div>
     }
-  `
+  `,
 })
 export class AboutComponent {
   private langService = inject(LangService);
   t = computed(() => ABOUT_TEXT[this.langService.lang()]);
-  activePhoto = signal<string | null>(null);
-
-  openPhoto(src: string): void {
-    this.activePhoto.set(src);
-  }
+  activePhoto = signal<{ src: string; alt: string; caption: string } | null>(null);
 
   closePhoto(): void {
     this.activePhoto.set(null);

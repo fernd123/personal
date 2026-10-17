@@ -1,162 +1,197 @@
 import { Component, computed, inject } from '@angular/core';
 import { LangService } from '../../services/lang.service';
+import { RevealDirective } from '../../shared/reveal.directive';
 
 interface ExperienceEntry {
   period: string;
-  roleBadge: string;
-  remoteBadge?: string;
-  title: string;
+  company: string;
   location: string;
-  description: string;
+  role: string;
+  mode?: string;
   bullets: string[];
+  stack: string[];
 }
 
 interface ExperienceLang {
-  badge: string;
   title: string;
-  subtitle: string;
+  intro: string;
+  cv: string;
   entries: ExperienceEntry[];
+  educationTitle: string;
+  education: { period: string; title: string; school: string }[];
+  languagesTitle: string;
+  languages: { name: string; level: string }[];
 }
 
 const EXPERIENCE_TEXT: Record<'es' | 'en', ExperienceLang> = {
   es: {
-    badge: '// TRAYECTORIA PROFESIONAL',
-    title: 'Evolución Profesional',
-    subtitle: '+10 años construyendo software en sectores industriales, sanitarios, cerámico, procurement y gestión empresarial.',
+    title: 'Experiencia',
+    intro: 'Más de diez años en desarrollo full-stack, gestionando también proyectos y equipos, en sectores como ERP, industria, procurement y sanidad.',
+    cv: 'CV completo en PDF',
     entries: [
       {
-        period: 'May 2025 – Actualidad',
-        roleBadge: 'Full-Stack Senior · Freelance',
-        remoteBadge: '100% Remoto',
-        title: 'Desarrollador Freelance Full-Stack Senior',
-        location: 'Remoto',
-        description: 'Trabajo actualmente como desarrollador freelance full-stack, con proyectos activos en los sectores sanitario e industrial. Ofrezco un servicio completo: desde la toma de requisitos y arquitectura hasta el desarrollo, despliegue y mantenimiento en producción.',
+        period: 'May 2025 — actualidad',
+        company: 'Freelance',
+        location: 'Remoto · varios sectores',
+        role: 'Senior Full-Stack Engineer',
         bullets: [
-          'Desarrollo de aplicaciones con Angular 20 y Java 21 / Spring Boot para sistemas críticos del sector salud, con enfoque en seguridad, normativa sanitaria y escalabilidad.',
-          'Participación activa en proyectos del sector industrial, aportando visión técnica, coordinación de equipo y comunicación directa con cliente.',
-          'Gestión autónoma del ciclo completo: análisis, arquitectura, desarrollo, validación y soporte continuo en producción.',
+          'Trabajo como freelance en proyectos de distintos sectores y estoy abierto a nuevas áreas.',
+          'Proyecto actual en el sector sanitario: aplicaciones full-stack para sistemas críticos de gestión, visualización y procesamiento de datos clínicos.',
+          'Frontends en Angular 22 y backends en Java 21, siguiendo buenas prácticas de arquitectura, seguridad y mantenibilidad.',
+          'Trabajo con equipos multidisciplinares (producto, QA, negocio) en entornos ágiles, participando en decisiones técnicas y en el diseño de la solución.',
         ],
+        stack: ['Angular 22', 'Java 21', 'Spring Boot', 'Microservicios', 'Microfrontends'],
       },
       {
-        period: 'Sep 2020 – Abr 2025',
-        roleBadge: 'Full-Stack Senior · Director de Proyectos',
-        remoteBadge: 'Semi presencial',
-        title: 'Mas Ingenieros',
+        period: 'Sep 2020 — Abr 2025',
+        company: 'Mas Ingenieros',
         location: 'Villarreal, Castellón',
-        description: 'Incorporación como desarrollador senior con evolución a Director de Proyectos. Construí el departamento de innovación de la empresa desde cero: definiendo la estructura de metodologías, el stack tecnológico, los procesos de desarrollo y las dinámicas de equipo.',
+        role: 'Senior Full-Stack Engineer · Responsable del departamento de innovación',
+        mode: 'Híbrido',
         bullets: [
-          'Diseñé el ecosistema de software propio de la empresa con soluciones modulares y reutilizables desplegadas en múltiples clientes de sectores industrial, cerámico, sanitario y procurement.',
-          'Arquitecturas con Spring Boot (microservicios y monolitos) y Angular (hasta v15), SQL y NoSQL, integración con hardware industrial (MQTT, Modbus TCP, Zigbee, BLE) y despliegue con Docker y Rancher.',
-          'Gestión completa de proyectos: análisis, definición de requisitos, planificación, desarrollo, testing y despliegue, coordinando equipos remotos en metodologías ágiles.',
-          'Interlocución directa con clientes, detención de oportunidades de negocio y transformación en soluciones de valor entregadas de principio a fin.',
+          'Responsable del departamento de innovación: gestión de equipos y proyectos, compaginada con el desarrollo.',
+          'Diseño, desarrollo y mantenimiento de productos de software propios y soluciones a medida para clientes industriales, orientados a la optimización de procesos y la monitorización de dispositivos físicos.',
+          'Arquitecturas de microservicios con Spring Boot y frontends escalables en Angular (hasta v15), con bases de datos relacionales y no relacionales.',
+          'Integración con hardware y sistemas industriales mediante MQTT, Modbus TCP, Zigbee y HTTP.',
+          'Gestión de proyectos de principio a fin (análisis, arquitectura, desarrollo, pruebas y despliegue), coordinando equipos remotos con metodologías ágiles.',
+          'Definición de un ecosistema de software modular y reutilizable, desplegado en varios clientes y entornos industriales.',
         ],
+        stack: ['Java', 'Spring Boot', 'Angular ≤15', 'SQL / NoSQL', 'MQTT', 'Modbus TCP', 'Zigbee', 'Docker', 'Rancher'],
       },
       {
-        period: 'Mar 2018 – Feb 2020',
-        roleBadge: 'Desarrollador Full-Stack',
-        remoteBadge: 'Remoto',
-        title: 'Buypower',
+        period: 'Feb 2020 — Sep 2020',
+        company: 'Innova Consulting',
+        location: 'Castellón',
+        role: 'Desarrollador y analista Navision / Business Central',
+        bullets: [
+          'Implantación y personalización de soluciones empresariales sobre Microsoft Dynamics NAV y Business Central.',
+          'Análisis funcional y técnico para adaptar el sistema a las necesidades de cada negocio, incluida la integración con servicios externos.',
+          'Soporte técnico y formación a usuarios finales y a equipos de soporte internos.',
+        ],
+        stack: ['Microsoft Dynamics NAV', 'Business Central'],
+      },
+      {
+        period: 'Mar 2018 — Feb 2020',
+        company: 'Buypower',
         location: 'Mataró, Barcelona',
-        description: 'Desarrollo full-stack de una plataforma SaaS desde cero en equipo distribuido, con responsabilidad directa sobre arquitectura, calidad de código y relación con stakeholders para toma de requisitos y validación funcional.',
+        role: 'Desarrollador Full-Stack (Java + Angular)',
+        mode: 'Remoto',
         bullets: [
-          'Construcción de una arquitectura de microservicios con Spring Boot y frontend modular en Angular 8, con foco en escalabilidad y mantenibilidad a largo plazo.',
-          'Estrategia de testing completa: pruebas unitarias con JUnit y Mockito, end-to-end con Selenium, integradas en pipelines CI/CD, logrando cero incidencias críticas en pases a producción.',
-          'Participación activa en decisiones de producto, refinamientos de backlog y demos a cliente en ciclos de entrega ágil.',
+          'Desarrollo de una plataforma web modular con Angular 8 y Spring Boot dentro de un equipo distribuido.',
+          'Colaboración con stakeholders en la toma de requisitos y la validación funcional.',
+          'Diseño e implementación de pruebas de integración y end-to-end con JUnit y Selenium, integradas en pipelines de CI/CD, que mejoraron la estabilidad y redujeron las incidencias en producción.',
         ],
+        stack: ['Angular 8', 'Spring Boot', 'JUnit', 'Mockito', 'Selenium', 'CI/CD'],
       },
       {
-        period: 'Mar 2018 – Jul 2018',
-        roleBadge: 'Desarrollador y Analista',
-        title: 'Indra',
-        location: 'Valencia',
-        description: 'Integración en un equipo multidisciplinar deslocalizado para un proyecto estratégico del Ministerio de Defensa de España, desarrollando interfaces con Angular 5 en un entorno corporativo de alta exigencia.',
-        bullets: [
-          'Desarrollo de componentes frontend complejos bajo estrictos estándares de calidad, seguridad y entrega definidos por el cliente institucional.',
-          'Trabajo en entornos Agile con equipos distribuidos de gran escala, con requisitos de auditoría técnica y documentación formal.',
-        ],
-      },
-      {
-        period: 'Abr 2015 – Mar 2018',
-        roleBadge: 'Desarrollador y Analista ERP',
-        title: 'Opentix S.L.',
+        period: 'Abr 2015 — Mar 2018',
+        company: 'Opentix S.L.',
         location: 'Castellón de la Plana',
-        description: 'Desarrollo, personalización e implantación de módulos ERP a nivel nacional e internacional (España y Chile), adaptando los flujos de negocio del cliente sobre la plataforma Openbravo en Java 1.8.',
+        role: 'Desarrollador y analista ERP',
         bullets: [
-          'Programación de módulos de negocio clave: facturación, contabilidad, albaranes, gestión de almacén, informes y flujos de aprobación, ajustando la plataforma a los procesos específicos de cada cliente.',
-          'Integración del ERP con aplicaciones móviles corporativas en Ionic 3, conectando los flujos de planta y ventas con el back-office empresarial.',
-          'Dirección técnica de equipos pequeños y definición de metodologías internas de desarrollo, documentación y gestión de proyectos.',
+          'Proyectos de implantación de ERP a nivel nacional e internacional (España y Chile) sobre Openbravo en Java 1.8.',
+          'Programación de módulos de negocio: facturación, contabilidad, albaranes, almacén, informes y flujos de aprobación, adaptados a los procesos de cada cliente.',
+          'Integración de Openbravo ERP, SugarCRM y aplicaciones móviles en Ionic 3.',
+          'Responsable técnico de equipos pequeños y definición de metodologías internas de desarrollo.',
         ],
+        stack: ['Java 1.8', 'Openbravo ERP', 'SugarCRM', 'Ionic 3'],
       },
+    ],
+    educationTitle: 'Formación',
+    education: [
+      { period: '2012 — 2016', title: 'Grado en Ingeniería Informática, especialidad en Software', school: 'Universitat Jaume I, Castellón de la Plana' },
+      { period: '2011', title: 'Bachillerato Científico-Tecnológico', school: 'I.E.S. Peñagolosa, Castellón de la Plana' },
+    ],
+    languagesTitle: 'Idiomas',
+    languages: [
+      { name: 'Español, valenciano', level: 'Nativo' },
+      { name: 'Inglés', level: 'C1 · EOI' },
+      { name: 'Alemán', level: 'A2 · EOI' },
     ],
   },
   en: {
-    badge: '// PROFESSIONAL TRAJECTORY',
-    title: 'Professional Evolution',
-    subtitle: '+10 years building software in industrial, healthcare, ceramic, procurement and business management sectors.',
+    title: 'Experience',
+    intro: 'More than ten years in full-stack development, also managing projects and teams, in sectors such as ERP, manufacturing, procurement and healthcare.',
+    cv: 'Full CV as PDF',
     entries: [
       {
-        period: 'May 2025 – Present',
-        roleBadge: 'Full-Stack Senior · Freelance',
-        remoteBadge: '100% Remote',
-        title: 'Senior Full-Stack Freelance Developer',
-        location: 'Remote',
-        description: 'Currently working as a senior full-stack freelance developer, with active projects in the healthcare and industrial sectors. I offer a complete service: from requirements gathering and architecture through to development, deployment and production maintenance.',
+        period: 'May 2025 — present',
+        company: 'Freelance',
+        location: 'Remote · several sectors',
+        role: 'Senior Full-Stack Engineer',
         bullets: [
-          'Application development with Angular 20 and Java 21 / Spring Boot for critical healthcare systems, focusing on security, healthcare regulations and scalability.',
-          'Active participation in industrial sector projects, contributing technical vision, team coordination and direct client communication.',
-          'Autonomous management of the full cycle: analysis, architecture, development, validation and continuous production support.',
+          'Freelancing on projects across different sectors, and open to new areas.',
+          'Current project in healthcare: full-stack applications for critical systems that manage, visualise and process clinical data.',
+          'Angular 22 frontends and Java 21 backends, following good practice in architecture, security and maintainability.',
+          'Working with multidisciplinary teams (product, QA, business) in agile environments, contributing to technical decisions and solution design.',
         ],
+        stack: ['Angular 22', 'Java 21', 'Spring Boot', 'Microservices', 'Microfrontends'],
       },
       {
-        period: 'Sep 2020 – Apr 2025',
-        roleBadge: 'Full-Stack Senior · Project Director',
-        remoteBadge: 'Hybrid',
-        title: 'Mas Ingenieros',
+        period: 'Sep 2020 — Apr 2025',
+        company: 'Mas Ingenieros',
         location: 'Villarreal, Castellón',
-        description: 'Joined as a senior developer and evolved into Project Director. I built the company\'s innovation department from scratch: defining the methodology structure, technology stack, development processes and team dynamics.',
+        role: 'Senior Full-Stack Engineer · Head of the innovation department',
+        mode: 'Hybrid',
         bullets: [
-          'Designed the company\'s own software ecosystem with modular, reusable solutions deployed across multiple clients in industrial, ceramic, healthcare and procurement sectors.',
-          'Architectures with Spring Boot (microservices and monoliths) and Angular (up to v15), SQL and NoSQL, integration with industrial hardware (MQTT, Modbus TCP, Zigbee, BLE) and deployment with Docker and Rancher.',
-          'Full project management: analysis, requirements definition, planning, development, testing and deployment, coordinating remote teams using agile methodologies.',
-          'Direct client liaison, identifying business opportunities and transforming them into end-to-end value solutions.',
+          'Responsible for the innovation department: managing teams and projects while continuing to program.',
+          'Led the design, development and maintenance of in-house software products and custom solutions for industrial clients, focused on process optimisation and monitoring of physical devices.',
+          'Microservice architectures with Spring Boot and scalable Angular frontends (up to v15), using relational and non-relational databases.',
+          'Integration with industrial hardware and systems over MQTT, Modbus TCP, Zigbee and HTTP.',
+          'Ran projects end to end (analysis, architecture, development, testing and deployment), coordinating remote teams with agile methods.',
+          'Defined a modular, reusable software ecosystem deployed across several clients and industrial sites.',
         ],
+        stack: ['Java', 'Spring Boot', 'Angular ≤15', 'SQL / NoSQL', 'MQTT', 'Modbus TCP', 'Zigbee', 'Docker', 'Rancher'],
       },
       {
-        period: 'Mar 2018 – Feb 2020',
-        roleBadge: 'Full-Stack Developer',
-        remoteBadge: 'Remote',
-        title: 'Buypower',
+        period: 'Feb 2020 — Sep 2020',
+        company: 'Innova Consulting',
+        location: 'Castellón',
+        role: 'Navision / Business Central Developer & Analyst',
+        bullets: [
+          'Implementation and customisation of business solutions on Microsoft Dynamics NAV and Business Central.',
+          'Functional and technical analysis to fit the system to each business, including integration with external services.',
+          'Technical support and training for end users and internal support teams.',
+        ],
+        stack: ['Microsoft Dynamics NAV', 'Business Central'],
+      },
+      {
+        period: 'Mar 2018 — Feb 2020',
+        company: 'Buypower',
         location: 'Mataró, Barcelona',
-        description: 'Full-stack development of a SaaS platform from scratch in a distributed team, with direct responsibility for architecture, code quality and stakeholder relations for requirements gathering and functional validation.',
+        role: 'Full-Stack Developer (Java + Angular)',
+        mode: 'Remote',
         bullets: [
-          'Built a microservices architecture with Spring Boot and modular frontend in Angular 8, focusing on long-term scalability and maintainability.',
-          'Complete testing strategy: unit tests with JUnit and Mockito, end-to-end with Selenium, integrated into CI/CD pipelines, achieving zero critical incidents in production releases.',
-          'Active participation in product decisions, backlog refinements and client demos in agile delivery cycles.',
+          'Led development of a modular web platform with Angular 8 and Spring Boot in a distributed team.',
+          'Worked with stakeholders on requirements gathering and functional validation.',
+          'Designed and implemented integration and end-to-end tests with JUnit and Selenium, wired into CI/CD pipelines, improving stability and reducing production incidents.',
         ],
+        stack: ['Angular 8', 'Spring Boot', 'JUnit', 'Mockito', 'Selenium', 'CI/CD'],
       },
       {
-        period: 'Mar 2018 – Jul 2018',
-        roleBadge: 'Developer & Analyst',
-        title: 'Indra',
-        location: 'Valencia',
-        description: 'Integration into a multidisciplinary distributed team for a strategic project for the Spanish Ministry of Defence, developing interfaces with Angular 5 in a high-demand corporate environment.',
-        bullets: [
-          'Development of complex frontend components under strict quality, security and delivery standards defined by the institutional client.',
-          'Work in Agile environments with large-scale distributed teams, with technical audit and formal documentation requirements.',
-        ],
-      },
-      {
-        period: 'Apr 2015 – Mar 2018',
-        roleBadge: 'Developer & ERP Analyst',
-        title: 'Opentix S.L.',
+        period: 'Apr 2015 — Mar 2018',
+        company: 'Opentix S.L.',
         location: 'Castellón de la Plana',
-        description: 'Development, customisation and implementation of ERP modules at national and international level (Spain and Chile), adapting client business flows on the Openbravo platform in Java 1.8.',
+        role: 'ERP Developer & Analyst',
         bullets: [
-          'Programming of key business modules: invoicing, accounting, delivery notes, warehouse management, reports and approval workflows, tailoring the platform to each client\'s specific processes.',
-          'ERP integration with corporate mobile applications in Ionic 3, connecting plant and sales flows with the business back-office.',
-          'Technical leadership of small teams and definition of internal development, documentation and project management methodologies.',
+          'ERP implementation projects in Spain and Chile on Openbravo, in Java 1.8.',
+          'Business modules: invoicing, accounting, delivery notes, warehouse, reports and approval workflows, adapted to each client’s processes.',
+          'Integrated Openbravo ERP, SugarCRM and Ionic 3 mobile applications.',
+          'Technical lead for small teams; defined internal development methodologies.',
         ],
+        stack: ['Java 1.8', 'Openbravo ERP', 'SugarCRM', 'Ionic 3'],
       },
+    ],
+    educationTitle: 'Education',
+    education: [
+      { period: '2012 — 2016', title: 'BSc Computer Engineering, Software specialisation', school: 'Universitat Jaume I, Castellón de la Plana' },
+      { period: '2011', title: 'Science & Technology Baccalaureate', school: 'I.E.S. Peñagolosa, Castellón de la Plana' },
+    ],
+    languagesTitle: 'Languages',
+    languages: [
+      { name: 'Spanish, Valencian', level: 'Native' },
+      { name: 'English', level: 'C1 · EOI' },
+      { name: 'German', level: 'A2 · EOI' },
     ],
   },
 };
@@ -164,105 +199,78 @@ const EXPERIENCE_TEXT: Record<'es' | 'en', ExperienceLang> = {
 @Component({
   selector: 'app-experience',
   standalone: true,
+  imports: [RevealDirective],
   template: `
-    <section id="experiencia-seccion" class="space-y-12">
-      <div class="border-b border-slate-800 pb-4">
-        <span class="text-xs font-mono text-slate-500">{{ t().badge }}</span>
-        <h2 class="text-3xl font-bold tracking-tight text-white mt-1">{{ t().title }}</h2>
-        <p class="text-slate-400 text-sm">{{ t().subtitle }}</p>
-      </div>
+    <section id="experiencia" class="border-t border-rule py-20 md:py-28" aria-labelledby="exp-title">
+      <div class="wrap grid gap-y-10 md:grid-cols-12 md:gap-x-8">
+        <header class="md:col-span-3 md:sticky md:top-24 md:self-start">
+          <p class="meta text-accent">03</p>
+          <h2 id="exp-title" class="mt-2 font-display text-4xl font-semibold text-ink">{{ t().title }}</h2>
+          <p class="mt-4 text-[0.95rem] leading-relaxed max-w-[36ch]">{{ t().intro }}</p>
+          <p class="mt-6 flex gap-4 text-sm">
+            <a href="/assets/cv-fernando-rodriguez-es.pdf" download class="link" hreflang="es">CV · ES</a>
+            <a href="/assets/cv-fernando-rodriguez-en.pdf" download class="link" hreflang="en">CV · EN</a>
+          </p>
+        </header>
 
-      <div class="relative pl-6 border-l border-slate-800 space-y-12 ml-4">
+        <div class="md:col-span-9">
+          <ol class="border-t border-ink">
+            @for (e of t().entries; track e.period) {
+              <li appReveal class="grid gap-x-8 gap-y-3 py-8 border-b border-rule lg:grid-cols-9">
+                <div class="lg:col-span-2">
+                  <p class="font-mono text-[0.8rem] text-ink whitespace-nowrap">{{ e.period }}</p>
+                  <p class="meta mt-1">{{ e.location }}</p>
+                  @if (e.mode) {
+                    <p class="meta">{{ e.mode }}</p>
+                  }
+                </div>
+                <div class="lg:col-span-7">
+                  <h3 class="font-display text-2xl font-semibold text-ink leading-tight">{{ e.company }}</h3>
+                  <p class="mt-1 text-ink">{{ e.role }}</p>
+                  <ul class="mt-4 space-y-2 max-w-[68ch]">
+                    @for (b of e.bullets; track b) {
+                      <li class="relative pl-5 leading-relaxed before:absolute before:left-0 before:top-[0.7em] before:w-2.5 before:h-px before:bg-mute">
+                        {{ b }}
+                      </li>
+                    }
+                  </ul>
+                  <p class="mt-4 font-mono text-[0.78rem] text-mute">{{ e.stack.join(' · ') }}</p>
+                </div>
+              </li>
+            }
+          </ol>
 
-        <!-- Freelance actual -->
-        <div class="relative group">
-          <span class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-brand-secondary border-4 border-brand-bg transition-transform group-hover:scale-125"></span>
-          <div class="space-y-2">
-            <div class="flex flex-wrap items-baseline gap-2">
-              <span class="font-mono text-xs text-brand-secondary">{{ t().entries[0].period }}</span>
-              <span class="px-2 py-0.5 bg-rose-500/10 text-[10px] font-mono text-rose-400 rounded border border-rose-500/20">{{ t().entries[0].roleBadge }}</span>
-              <span class="px-2 py-0.5 bg-brand-accent/10 text-[10px] font-mono text-brand-accent rounded border border-brand-accent/20">{{ t().entries[0].remoteBadge }}</span>
+          <div class="mt-16 grid gap-10 sm:grid-cols-2">
+            <div>
+              <h3 class="meta uppercase tracking-[0.12em]">{{ t().educationTitle }}</h3>
+              <ul class="mt-4 border-t border-rule">
+                @for (ed of t().education; track ed.title) {
+                  <li class="py-4 border-b border-rule">
+                    <p class="font-mono text-[0.78rem] text-mute">{{ ed.period }}</p>
+                    <p class="mt-1 text-ink font-medium">{{ ed.title }}</p>
+                    <p class="text-sm">{{ ed.school }}</p>
+                  </li>
+                }
+              </ul>
             </div>
-            <h3 class="text-lg font-bold text-white">{{ t().entries[0].title }} <span class="text-xs text-slate-500 font-normal">| {{ t().entries[0].location }}</span></h3>
-            <p class="text-xs text-slate-400 max-w-3xl leading-relaxed">{{ t().entries[0].description }}</p>
-            <ul class="text-[11px] text-slate-300 list-disc list-inside space-y-1 pl-2">
-              @for (b of t().entries[0].bullets; track b) { <li>{{ b }}</li> }
-            </ul>
+            <div>
+              <h3 class="meta uppercase tracking-[0.12em]">{{ t().languagesTitle }}</h3>
+              <dl class="mt-4 border-t border-rule">
+                @for (l of t().languages; track l.name) {
+                  <div class="flex justify-between gap-4 py-4 border-b border-rule">
+                    <dt class="text-ink">{{ l.name }}</dt>
+                    <dd class="font-mono text-[0.78rem] text-mute">{{ l.level }}</dd>
+                  </div>
+                }
+              </dl>
+            </div>
           </div>
         </div>
-
-        <!-- Mas Ingenieros -->
-        <div class="relative group">
-          <span class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-slate-600 border-4 border-brand-bg transition-transform group-hover:scale-125"></span>
-          <div class="space-y-2">
-            <div class="flex flex-wrap items-baseline gap-2">
-              <span class="font-mono text-xs text-slate-400">{{ t().entries[1].period }}</span>
-              <span class="px-2 py-0.5 bg-slate-900 text-[10px] font-mono text-slate-400 rounded border border-slate-800">{{ t().entries[1].roleBadge }}</span>
-              <span class="px-2 py-0.5 bg-slate-900 text-[10px] font-mono text-slate-500 rounded border border-slate-800">{{ t().entries[1].remoteBadge }}</span>
-            </div>
-            <h3 class="text-lg font-bold text-white">{{ t().entries[1].title }} <span class="text-xs text-slate-500 font-normal">| {{ t().entries[1].location }}</span></h3>
-            <p class="text-xs text-slate-400 max-w-3xl leading-relaxed">{{ t().entries[1].description }}</p>
-            <ul class="text-[11px] text-slate-300 list-disc list-inside space-y-1 pl-2">
-              @for (b of t().entries[1].bullets; track b) { <li>{{ b }}</li> }
-            </ul>
-          </div>
-        </div>
-
-        <!-- Buypower -->
-        <div class="relative group">
-          <span class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-slate-700 border-4 border-brand-bg transition-transform group-hover:scale-125"></span>
-          <div class="space-y-2">
-            <div class="flex flex-wrap items-baseline gap-2">
-              <span class="font-mono text-xs text-slate-500">{{ t().entries[2].period }}</span>
-              <span class="px-2 py-0.5 bg-slate-900 text-[10px] font-mono text-slate-400 rounded border border-slate-800">{{ t().entries[2].roleBadge }}</span>
-              <span class="px-2 py-0.5 bg-brand-accent/10 text-[10px] font-mono text-brand-accent rounded border border-brand-accent/20">{{ t().entries[2].remoteBadge }}</span>
-            </div>
-            <h3 class="text-lg font-bold text-slate-300">{{ t().entries[2].title }} <span class="text-xs text-slate-500 font-normal">| {{ t().entries[2].location }}</span></h3>
-            <p class="text-xs text-slate-400 max-w-3xl leading-relaxed">{{ t().entries[2].description }}</p>
-            <ul class="text-[11px] text-slate-300 list-disc list-inside space-y-1 pl-2">
-              @for (b of t().entries[2].bullets; track b) { <li>{{ b }}</li> }
-            </ul>
-          </div>
-        </div>
-
-        <!-- Indra -->
-        <div class="relative group">
-          <span class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-slate-700 border-4 border-brand-bg transition-transform group-hover:scale-125"></span>
-          <div class="space-y-2">
-            <div class="flex flex-wrap items-baseline gap-2">
-              <span class="font-mono text-xs text-slate-500">{{ t().entries[3].period }}</span>
-              <span class="px-2 py-0.5 bg-slate-900 text-[10px] font-mono text-slate-400 rounded border border-slate-800">{{ t().entries[3].roleBadge }}</span>
-            </div>
-            <h3 class="text-lg font-bold text-slate-300">{{ t().entries[3].title }} <span class="text-xs text-slate-500 font-normal">| {{ t().entries[3].location }}</span></h3>
-            <p class="text-xs text-slate-400 max-w-3xl leading-relaxed">{{ t().entries[3].description }}</p>
-            <ul class="text-[11px] text-slate-300 list-disc list-inside space-y-1 pl-2">
-              @for (b of t().entries[3].bullets; track b) { <li>{{ b }}</li> }
-            </ul>
-          </div>
-        </div>
-
-        <!-- Opentix -->
-        <div class="relative group">
-          <span class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-slate-700 border-4 border-brand-bg transition-transform group-hover:scale-125"></span>
-          <div class="space-y-2">
-            <div class="flex flex-wrap items-baseline gap-2">
-              <span class="font-mono text-xs text-slate-500">{{ t().entries[4].period }}</span>
-              <span class="px-2 py-0.5 bg-slate-900 text-[10px] font-mono text-slate-400 rounded border border-slate-800">{{ t().entries[4].roleBadge }}</span>
-            </div>
-            <h3 class="text-lg font-bold text-slate-300">{{ t().entries[4].title }} <span class="text-xs text-slate-500 font-normal">| {{ t().entries[4].location }}</span></h3>
-            <p class="text-xs text-slate-400 max-w-3xl leading-relaxed">{{ t().entries[4].description }}</p>
-            <ul class="text-[11px] text-slate-300 list-disc list-inside space-y-1 pl-2">
-              @for (b of t().entries[4].bullets; track b) { <li>{{ b }}</li> }
-            </ul>
-          </div>
-        </div>
-
       </div>
     </section>
-  `
+  `,
 })
 export class ExperienceComponent {
   private langService = inject(LangService);
   t = computed(() => EXPERIENCE_TEXT[this.langService.lang()]);
 }
-

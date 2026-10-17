@@ -1,73 +1,207 @@
 @import "tailwindcss";
 
-@theme {
-  --color-brand-bg: #0f1d35;
-  --color-brand-card: #1a2d4a;
-  --color-brand-accent: #818cf8;
-  --color-brand-secondary: #34d399;
-  --color-brand-highlight: #7dd3fc;
-  --font-sans: "Plus Jakarta Sans", sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
-}
+@custom-variant dark (&:where(.dark, .dark *));
 
-/* ===== LIGHT MODE (default) ===== */
+/* ===== Palette: drafting paper + graphite, one signal-orange accent ===== */
 :root {
   color-scheme: light;
-  --color-white: #0f172a;
-  /* Hierarchy (lightest → darkest): brand-bg > brand-card > slate-950 > slate-900 > slate-800 */
-  --color-slate-950: #e4ecf5;    /* chip/overlay bg — clearly darker than page */
-  --color-slate-900: #d4dfec;    /* card bg — distinctly different from page */
-  --color-slate-800: #b8cad9;    /* borders, dividers — visible */
-  --color-slate-700: #9ab0c4;
-  --color-slate-600: #7a97ae;
-  --color-slate-500: #5f7e96;
-  --color-slate-400: #3d6480;
-  --color-slate-300: #1e4060;
-  --color-slate-200: #142d47;    /* was missing — dark readable text */
-  --color-brand-bg: #ecf3fb;     /* page background */
-  --color-brand-card: #f5f9fd;   /* hero card / elevations */
-  --color-brand-highlight: #1d4ed8;  /* dark blue — readable on light backgrounds */
-  --grid-line-color: rgba(60, 90, 140, 0.06);  /* visible but soft grid in light mode */
+  --paper: #f3f1ec;
+  --paper-2: #ebe8e1;
+  --ink: #17191c;
+  --ink-2: #33363b;
+  --mute: #5f6267;
+  --rule: #d5d1c7;
+  --accent: #b4381a;
 }
 
-/* ===== DARK MODE ===== */
 .dark {
   color-scheme: dark;
-  --color-white: #ffffff;
-  --color-slate-950: #020617;
-  --color-slate-900: #0f172a;
-  --color-slate-800: #1e293b;
-  --color-slate-700: #334155;
-  --color-slate-600: #475569;
-  --color-slate-500: #64748b;
-  --color-slate-400: #94a3b8;
-  --color-slate-300: #cbd5e1;
-  --color-brand-bg: #0f1d35;
-  --color-brand-card: #1a2d4a;
-  --grid-line-color: rgba(129, 140, 248, 0.05);  /* subtle grid in dark mode */
+  --paper: #131416;
+  --paper-2: #1b1c1f;
+  --ink: #ecebe6;
+  --ink-2: #c9c8c2;
+  --mute: #9a9a95;
+  --rule: #2d2e32;
+  --accent: #f0794f;
+}
+
+/* ===== Technology categories (chips, legend, stack groups) ===== */
+[data-cat='frontend'] { --cat-fg: #1d4f91; --cat-bg: #e6eef8; --cat-bd: #b9cde8; }
+[data-cat='mobile']   { --cat-fg: #8a2f5b; --cat-bg: #f5e4ec; --cat-bd: #e3bdd0; }
+[data-cat='backend']  { --cat-fg: #8a3a12; --cat-bg: #f7e9df; --cat-bd: #e6c4ad; }
+[data-cat='arch']     { --cat-fg: #5b3f8c; --cat-bg: #eee8f6; --cat-bd: #cfc2e6; }
+[data-cat='data']     { --cat-fg: #2f6b3a; --cat-bg: #e5f0e6; --cat-bd: #bcd8c0; }
+[data-cat='infra']    { --cat-fg: #3d5a66; --cat-bg: #e4ecef; --cat-bd: #bfd0d6; }
+
+.dark [data-cat='frontend'] { --cat-fg: #9cc0f0; --cat-bg: #1a2533; --cat-bd: #2d4260; }
+.dark [data-cat='mobile']   { --cat-fg: #eda7c7; --cat-bg: #2c1a23; --cat-bd: #553243; }
+.dark [data-cat='backend']  { --cat-fg: #f0b48e; --cat-bg: #2b1f18; --cat-bd: #54392a; }
+.dark [data-cat='arch']     { --cat-fg: #c7b2ee; --cat-bg: #241e30; --cat-bd: #43375c; }
+.dark [data-cat='data']     { --cat-fg: #9fd2a8; --cat-bg: #18261b; --cat-bd: #2f4a35; }
+.dark [data-cat='infra']    { --cat-fg: #a9c3cc; --cat-bg: #1b2427; --cat-bd: #33464d; }
+
+/* Dark ink block used for the closing contact section, in both themes */
+.ink-block {
+  --paper: #17191c;
+  --paper-2: #202226;
+  --ink: #f3f1ec;
+  --ink-2: #cfccc4;
+  --mute: #9c9a94;
+  --rule: #34363b;
+  --accent: #f0794f;
+}
+.dark .ink-block {
+  --paper: #1b1c1f;
+  --rule: #303136;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-mute: var(--mute);
+  --color-rule: var(--rule);
+  --color-accent: var(--accent);
+  --font-sans: "IBM Plex Sans", system-ui, sans-serif;
+  --font-display: "IBM Plex Sans Condensed", "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 
 body {
-  background-color: var(--color-brand-bg);
-  transition: background-color 0.25s ease, color 0.25s ease;
+  background-color: var(--paper);
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* Scrollbar premium */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: var(--color-brand-bg); }
-::-webkit-scrollbar-thumb { background: var(--color-slate-800); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: var(--color-brand-accent); }
-
-.bg-grid {
-  background-size: 50px 50px;
-  background-image:
-    linear-gradient(to right, var(--grid-line-color) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--grid-line-color) 1px, transparent 1px);
+::selection {
+  background: var(--accent);
+  color: var(--paper);
 }
 
-.perspective-container { perspective: 1500px; }
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
 
-.tilt-card {
-  transform-style: preserve-3d;
-  transition: transform 0.3s ease-out, box-shadow 0.3s ease;
+@layer components {
+  .wrap {
+    margin-inline: auto;
+    max-width: 1200px;
+    padding-inline: 1rem;
+    @media (width >= 40rem) {
+      padding-inline: 2rem;
+    }
+  }
+
+  /* Small mono label used for metadata: dates, section numbers, versions */
+  .meta {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    color: var(--mute);
+  }
+
+  /* Key phrase inside project copy (see MarksPipe) */
+  .mark {
+    background: none;
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.22em;
+    text-decoration-skip-ink: auto;
+  }
+
+  /* Technology chip; colour comes from its category (TechCategoryPipe) */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.6rem;
+    border: 1px solid var(--cat-bd, var(--rule));
+    border-radius: 2px;
+    background: var(--cat-bg, var(--paper));
+    color: var(--cat-fg, var(--ink));
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  /* Small square used in legends and group headings */
+  .swatch {
+    display: inline-block;
+    width: 0.65rem;
+    height: 0.65rem;
+    flex-shrink: 0;
+    background: var(--cat-fg);
+  }
+
+  /* Underline that draws in on hover */
+  .link {
+    color: var(--ink);
+    background-image: linear-gradient(var(--accent), var(--accent));
+    background-size: 100% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.25s ease, color 0.15s ease;
+  }
+  .link:hover {
+    color: var(--accent);
+    background-size: 100% 2px;
+  }
+}
+
+/* Reveal-on-scroll (see RevealDirective). One subtle fade, once. */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Stack search: the component draws its own clear button */
+.stack-search::-webkit-search-cancel-button {
+  appearance: none;
+}
+/* Focus is shown by the accent underline on the wrapper instead of the global outline */
+.stack-search:focus-visible {
+  outline: none;
+}
+
+/* Blinking caret of the hero skills banner */
+.caret {
+  animation: caret-blink 1s steps(1) infinite;
+}
+@keyframes caret-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caret {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }
